@@ -1,13 +1,18 @@
 import * as actionTypes from '../actions';
 
 const iniState = {
-  recipes: []
+  components: []
 };
 const rootReducer = (state = iniState, action) => {
   switch (action.type) {
-    case actionTypes.ADD_RECIPE:
+    case actionTypes.ADD_COMPONENT:
+      const newComponent = {
+        id: Math.random(),
+        co: action.data.compToReducer
+      }
       return {
         ...state,
+        components: state.components.concat(newComponent)
       }
   }
   return state;
