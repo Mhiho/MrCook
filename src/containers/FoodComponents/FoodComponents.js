@@ -15,10 +15,9 @@ class FoodComponents extends Component {
         <ul>
           {
             this.props.compons.map(component=>(
-          <FoodComponent
-            key={component.id}
-            comp= {component.co}
-          />
+          <li key={component.id}>
+            {component.co}
+          </li>
             ))
           }
           </ul>
@@ -34,7 +33,7 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    onAddComponent: (component) => dispatch({type: actionTypes.ADD_COMPONENT, data: {compToReducer: component}})
+    onAddComponent: (component) => dispatch({type: actionTypes.ADD_COMPONENT, data: {compFromReducer: component}})
   }
 }
 

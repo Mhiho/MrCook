@@ -8,7 +8,7 @@ const rootReducer = (state = iniState, action) => {
     case actionTypes.ADD_COMPONENT:
       const newComponent = {
         id: Math.random(),
-        co: action.data.compToReducer
+        co: action.data.compFromReducer
       }
       return {
         ...state,

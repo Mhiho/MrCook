@@ -18,7 +18,7 @@ class AddComponent extends Component {
         onChange = {this.addComponentHandler}
         type="text"
       />
-      <button onClick={this.props.click(this.state.component)}>
+      <button onClick={() => this.props.click(this.state.component)}>
         {this.props.text}
         </button>
       </div>
