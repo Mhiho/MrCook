@@ -10,7 +10,9 @@ class AddComponent extends Component {
   addComponentHandler = (event) => {
     this.setState({component: event.target.value})
   }
+
   render(){
+
     return (
       <div>
       <input
@@ -19,7 +21,7 @@ class AddComponent extends Component {
         type="text"
       />
       <button onClick={() => this.props.click(this.state.component)}>
-        {this.props.text}
+        Add
         </button>
       </div>
     )
