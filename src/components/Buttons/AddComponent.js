@@ -7,8 +7,12 @@ class AddComponent extends Component {
     component: ''
   }
 
-  addComponentHandler = (event) => {
-    this.setState({component: event.target.value})
+  onChangeHandler = (component) =>{
+    this.setState({component: component})
+  }
+
+  addComponentHandler = () =>{
+    this.setState({component: ''})
   }
 
   render(){
@@ -16,11 +20,12 @@ class AddComponent extends Component {
     return (
       <div>
       <input
+        onChange={e=>{this.onChangeHandler(e.target.value)}}
         value={this.state.component}
-        onChange = {this.addComponentHandler}
         type="text"
       />
-      <button onClick={() => this.props.click(this.state.component)}>
+      <button onClick={() => {this.props.click(this.state.component),
+                              this.addComponentHandler()}}>
         Add
         </button>
       </div>

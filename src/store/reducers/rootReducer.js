@@ -8,7 +8,7 @@ const rootReducer = (state = iniState, action) => {
   switch (action.type) {
     case actionTypes.ADD_COMPONENT:
       const newComponent = {
-        id: Math.floor(Math.random()),
+        id: Math.floor(Math.random()*10000),
         co: action.data.compToReducer
       }
       return {
@@ -23,8 +23,8 @@ const rootReducer = (state = iniState, action) => {
     case actionTypes.EDIT_COMPONENT:
       return {
        ...state,
-       components: state.components.map((component,i) =>  i !== action.data.ind ?
-       {...component, co: action.data.componentToReducer} : component
+       components: state.components.map((component, index) =>  component.key == action.payload.ind ?
+       {...component, co: action.payload.componentToReducer} : component
      )
     };
 }
