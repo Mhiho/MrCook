@@ -21,10 +21,13 @@ class ComponentsList extends Component {
     return (
       <div>
          {this.props.components.map((component,index)=>(
+        <div>
           <div
             key={component.id}>
             component {index+1}: {component.co}
           </div>
+          <button onClick={()=>this.props.onDeleteComponent(component.id)}>erase it</button>
+        </div>
         ))
 }
         <EditComponent
@@ -42,7 +45,8 @@ function mapStateToProps(state) {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    onEditComponent: (component, id) => dispatch({type: actionTypes.EDIT_COMPONENT, payload: {componentToReducer: component, ind: id}})
+    onEditComponent: (component, id) => dispatch({type: actionTypes.EDIT_COMPONENT, payload: {componentToReducer: component, ind: id}}),
+    onDeleteComponent: (id) => dispatch({type: actionTypes.DELETE_COMPONENT, index: id })
   }
 }
 

@@ -6,15 +6,10 @@ import EditComponent from '../../components/Buttons/EditComponent';
 import * as actionTypes from '../../store/actions';
 import classes from './FoodComponents.scss';
 import ComponentsList from '../ComponentsList/ComponentsList';
+import {Link} from 'react-router-dom';
+
 
 class FoodComponents extends Component {
-  state = {
-    show: false
-  }
-
-  showTrue = () => {
-    this.setState({show: true})
-  }
   render() {
     return (
       <div>
@@ -23,7 +18,6 @@ class FoodComponents extends Component {
         />
 
           <ComponentsList />
-
       </div>
     )
   }
@@ -36,8 +30,7 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    onAddComponent: (component) => dispatch({type: actionTypes.ADD_COMPONENT, data: {compToReducer: component}}),
-    onDeleteComponent: (id) => dispatch({type: actionTypes.DELETE_COMPONENT, index: id })
+    onAddComponent: (component) => dispatch({type: actionTypes.ADD_COMPONENT, data: {compToReducer: component}})
   }
 }
 
