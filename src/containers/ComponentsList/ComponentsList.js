@@ -5,27 +5,35 @@ import * as actionTypes from '../../store/actions';
 
 class ComponentsList extends Component {
   state = {
-    show: {}
+    isEditing: {}
   }
-  showContentFunction(index) {
-      const itemToShow = {
-        ...this.state.show,
-        [index]: true
-      };
-      this.setState({show: itemToShow})
+  trueEdit(index) {
+    const showItem ={
+      ...this.state.isEditing,
+      [index]: true
+    };
+      this.setState({isEditing: showItem})
     }
+  falseEdit(index) {
+    this.setState({isEditing: {[index] : false}})
+  }
 
   render(){
     console.log(this.props.components);
-
     return (
          this.props.components.map((component,index)=>(
-          <div
+          <div>
+            <div
             key={component.id}>
             {component.co}
-          <EditComponent
-            clicked={this.props.onEditComponent}
-          />
+            </div>
+            <button
+              onClick={()=>this.trueEdit(component.id)}>edit
+            </button>
+          {   this.state.isEditing[component.id] ===true ?
+            <EditComponent
+              clicked={this.props.onEditComponent}/>
+            : null}
           </div>
 
 
@@ -43,7 +51,7 @@ function mapStateToProps(state) {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    onEditComponent: (component,id) => dispatch({type: actionTypes.EDIT_COMPONENT, payload: {componentToReducer: component, ind: id}})
+    onEditComponent: (component, id) => dispatch({type: actionTypes.EDIT_COMPONENT, payload: {componentToReducer: component, ind: id}})
   }
 }
 

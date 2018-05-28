@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import {connect} from 'react-redux';
 
 class EditComponent extends Component {
 
@@ -13,19 +13,30 @@ class EditComponent extends Component {
 
   render(){
 
-    return (
+    return ( this.props.components.map(c=>{
+      return (
       <div>
       <input
         value={this.state.updated}
         onChange = {this.editComponentHandler}
         type="text"
       />
-      <button onClick={() => this.props.clicked(this.state.updated)}>
-        Edit Component
+      <button onClick={() => this.props.clicked(this.state.updated, c.id)}>
+      save
         </button>
       </div>
     )
+    }
+    )
+  )
+
   }
 }
 
-export default EditComponent;
+function mapStateToProps(state) {
+  return{
+    components: state.components
+  }
+}
+
+export default connect(mapStateToProps)(EditComponent);
