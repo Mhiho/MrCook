@@ -13,16 +13,16 @@ class EditComponent extends Component {
 
   render(){
 
-    return ( this.props.components.map(c=>{
+    return ( this.props.components.map((c,index)=>{
       return (
       <div>
       <input
-        value={this.state.updated}
+        value={this.state.updated[c.id]}
         onChange = {this.editComponentHandler}
         type="text"
       />
       <button onClick={() => this.props.clicked(this.state.updated, c.id)}>
-      save
+      edit component nr {index+1}
         </button>
       </div>
     )

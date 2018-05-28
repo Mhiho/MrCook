@@ -5,42 +5,33 @@ import * as actionTypes from '../../store/actions';
 
 class ComponentsList extends Component {
   state = {
-    isEditing: {}
+    show: {}
   }
-  trueEdit(index) {
-    const showItem ={
-      ...this.state.isEditing,
-      [index]: true
-    };
-      this.setState({isEditing: showItem})
+  showContentFunction(index) {
+      const itemToShow = {
+        ...this.state.show,
+        [index]: true
+      };
+      this.setState({show: itemToShow})
     }
-  falseEdit(index) {
-    this.setState({isEditing: {[index] : false}})
-  }
 
   render(){
     console.log(this.props.components);
+
     return (
-         this.props.components.map((component,index)=>(
-          <div>
-            <div
+      <div>
+         {this.props.components.map((component,index)=>(
+          <div
             key={component.id}>
-            {component.co}
-            </div>
-            <button
-              onClick={()=>this.trueEdit(component.id)}>edit
-            </button>
-          {   this.state.isEditing[component.id] ===true ?
-            <EditComponent
-              clicked={this.props.onEditComponent}/>
-            : null}
+            component {index+1}: {component.co}
           </div>
-
-
         ))
-
+}
+        <EditComponent
+          clicked={this.props.onEditComponent}
+        />
+      </div>
     )
-
   }
 }
 
