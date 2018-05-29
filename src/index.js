@@ -4,7 +4,7 @@ import './index.scss';
 import App from './App';
 import ComponentCombine from './containers/ComponentCombine/ComponentCombine';
 import registerServiceWorker from './registerServiceWorker';
-import { createStore, combineReducers } from 'redux';
+import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducer from './store/reducers/rootReducer';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';

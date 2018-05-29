@@ -25,7 +25,7 @@ class FoodComponents extends Component {
 
 const mapStateToProps = state => {
   return {
-    compons: state.components
+    compons: state.manageComponents.components
   }
 }
 const mapDispatchToProps = dispatch => {

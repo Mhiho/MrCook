@@ -21,9 +21,9 @@ class ComponentsList extends Component {
     return (
       <div>
          {this.props.components.map((component,index)=>(
-        <div>
-          <div
-            key={component.id}>
+        <div
+          key={component.id}>
+          <div>
             component {index+1}: {component.co}
           </div>
           <button onClick={()=>this.props.onDeleteComponent(component.id)}>erase it</button>
@@ -40,7 +40,7 @@ class ComponentsList extends Component {
 
 function mapStateToProps(state) {
   return {
-    components: state.components
+    components: state.manageComponents.components
   }
 }
 const mapDispatchToProps = dispatch => {

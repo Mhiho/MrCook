@@ -24,7 +24,7 @@ class AddComponent extends Component {
         value={this.state.component}
         type="text"
       />
-      <button onClick={() => {this.props.click(this.state.component),
+      <button onClick={() => {this.props.click(this.state.component);
                               this.addComponentHandler()}}>
         Add
         </button>

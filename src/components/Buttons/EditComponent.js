@@ -15,7 +15,7 @@ class EditComponent extends Component {
 
     return ( this.props.components.map((c,index)=>{
       return (
-      <div>
+      <div key={c.id}>
       <input
         value={this.state.updated[c.id]}
         onChange = {this.editComponentHandler}
@@ -35,7 +35,7 @@ class EditComponent extends Component {
 
 function mapStateToProps(state) {
   return{
-    components: state.components
+    components: state.manageComponents.components
   }
 }
 
