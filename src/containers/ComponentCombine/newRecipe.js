@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+
 
 class NewRecipe extends Component {
 
@@ -15,7 +17,8 @@ class NewRecipe extends Component {
   }
 
   render(){
-
+    const compons =
+    this.props.components.filter(c=> c.toRecipe === true ? c : null );
     return (
       <div>
       <input
@@ -23,7 +26,7 @@ class NewRecipe extends Component {
         value={this.state.recipe}
         type="text"
       />
-      <button onClick={() => {this.props.clickson(this.state.recipe);
+      <button onClick={() => {this.props.clickson(this.state.recipe, compons);
                               this.resetInputHandler()}}>
         Add recipe with chosen components
         </button>
@@ -31,6 +34,11 @@ class NewRecipe extends Component {
     )
   }
 }
+function mapStateToProps(state){
+  return{
+    components: state.manageComponents.components,
+    recipes: state.createRecipe.recipes
+  }
+}
 
-
-export default NewRecipe;
+export default connect(mapStateToProps)(NewRecipe);

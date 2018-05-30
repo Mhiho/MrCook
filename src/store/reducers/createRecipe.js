@@ -10,7 +10,8 @@ function createRecipe(state = iniState, action) {
     case actionTypes.ADD_RECIPE:
       const newRecipe = {
         id: Math.floor(Math.random()*10000),
-        re: action.payload.recipeInReducer
+        re: action.payload.recipeInReducer,
+        comps: action.payload.compsInReducer
       }
       return {
         ...state,

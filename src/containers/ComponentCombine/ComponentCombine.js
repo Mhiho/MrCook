@@ -2,25 +2,11 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actionTypes from '../../store/actions';
 import NewRecipe from './newRecipe';
-
+import RecipeList from './RecipeList';
 
 class ComponentCombine extends Component {
 
-  state = {
-  changeBool: {}
-  }
-  changeStatusforIdHandler = (index) => {
-    const itemToAdd = {
-      ...this.state.changeBool,
-      [index]: true
-    }
-  }
   render(){
-    const recipes =   this.props.recipes.map(recipe =>(
-          <p key={recipe.id}>{recipe.re}</p>
-      )
-    );
-    console.log(this.props.recipes)
     return (
       <div>
         <form>
@@ -38,8 +24,8 @@ class ComponentCombine extends Component {
         <NewRecipe
           clickson={this.props.addRecipe} />
         <p>Here are your recipes</p>
-          {recipes}
-        
+          <RecipeList />
+
       </div>
     )
   }
@@ -55,8 +41,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return{
-    addRecipe: (recipe) => dispatch({type: actionTypes.ADD_RECIPE, payload: {recipeInReducer: recipe}}),
-    addComToRecipe: (toRecipe, id) =>dispatch({type: actionTypes.ADD_COM_TO_RECIPE, payload: {toRecipeInReducer: toRecipe, idInReducer: id}})
+    addRecipe: (recipe,comps) => dispatch({type: actionTypes.ADD_RECIPE, payload: {recipeInReducer: recipe, compsInReducer: comps}}),
+    addComToRecipe: (toRecipe, id) => dispatch({type: actionTypes.ADD_COM_TO_RECIPE, payload: {toRecipeInReducer: toRecipe, idInReducer: id}})
   }
 }
 
