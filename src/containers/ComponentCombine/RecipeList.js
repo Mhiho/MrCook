@@ -6,11 +6,11 @@ import {connect} from 'react-redux';
 class RecipeList extends Component {
   render(){
 
-    const compons = this.props.recipes.map(recipe =>(
+    let compons = this.props.recipes.map(recipe =>(
             <div key={recipe.id}>
             <h2>{recipe.re}</h2>
               <ul key={recipe.id}>
-              {recipe.comps.map(comp=> comp.toRecipe === true ?
+              {this.props.components.map(comp=> comp.toRecipe === true ?
                 <li key={comp.id}>{comp.co}</li>
                 : null
               )}
@@ -30,7 +30,8 @@ class RecipeList extends Component {
 
 function mapStateToProps(state){
   return{
-    recipes: state.manageComponents.recipes
+    recipes: state.manageComponents.recipes,
+    components: state.manageComponents.components
   }
 }
 

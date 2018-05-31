@@ -7,13 +7,13 @@ class EditRecipe extends Component{
 
 
   render(){
-    const obj = this.props.recipes.map(recipe=>recipe.comps.map(comp=>{
+    const obj = this.props.components.map(comp=>{
       comp
-    }))
+    })
     return(
       <div>
         <form>
-        { this.props.recipes.map(recipe=> recipe.comps.map(comp=>(
+        { this.props.components.map(comp=>(
           <div>
         <input
           onChange={(e)=>this.props.editToRecipe(comp.toRecipe == e.target.value, comp.id)}
@@ -24,7 +24,7 @@ class EditRecipe extends Component{
         <label key={comp.id}>{comp.co}</label>
 
         </div>
-      )))
+      ))
       }
         </form>
         <button onClick={()=>this.props.changeRecipe(obj)}>
