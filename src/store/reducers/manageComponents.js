@@ -40,9 +40,9 @@ function manageComponents(state = iniState, action) {
     case actionTypes.EDIT_BOOLEAN:
       return {
         ...state,
-        components: state.components.map(comp=> comp.id === action.payload.idInReducer ?
+        recipes: state.recipes.map(recipe=>recipe.comps.map(comp=> comp.id === action.payload.idInReducer ?
           {...comp, toRecipe: comp.toRecipeInReducer} : comp
-        )
+        ))
       }
 
 ///skopiowane ponizej z createRecipe
@@ -55,18 +55,12 @@ function manageComponents(state = iniState, action) {
           }
           return {
             ...state,
-            recipes: state.recipes.concat(newRecipe)
+            recipes: state.recipes.concat(newRecipe).filter(recipe=>recipe.comps.map(comp=>comp.toRecipe === true))
           }
         case actionTypes.EDIT_RECIPE:
-          const addedComp ={
-            id: state.recipes.map(recipe=>recipe.id),
-            re: state.recipes.map(recipe=>recipe.re),
-            comps: [...action.payload.objectToAdd]
-
-          }
           return {
             ...state,
-            recipes: state.recipes.concat(addedComp)
+            recipes: state.recipes
     }
 }
   return state;

@@ -9,11 +9,16 @@ class RecipeList extends Component {
     const compons = this.props.recipes.map(recipe =>(
             <div key={recipe.id}>
             <h2>{recipe.re}</h2>
-              <p>{recipe.comps.map(comp=>comp.co).join(', ')}</p>
+              <ul key={recipe.id}>
+              {recipe.comps.map(comp=> comp.toRecipe === true ?
+                <li key={comp.id}>{comp.co}</li>
+                : null
+              )}
+              </ul>
             </div>
       )
     )
-
+    console.log(compons);
     return (
       <div>
         {compons}

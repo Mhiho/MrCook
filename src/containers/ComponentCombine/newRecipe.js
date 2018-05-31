@@ -17,8 +17,9 @@ class NewRecipe extends Component {
   }
 
   render(){
-    const compons =
-    this.props.components.filter(c=> c.toRecipe === true);
+    const compons = this.props.components ?
+    this.props.components.map(comp=> comp)
+    : null;
     return (
       <div>
       <input
