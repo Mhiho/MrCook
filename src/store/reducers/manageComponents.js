@@ -24,7 +24,7 @@ function manageComponents(state = iniState, action) {
     case actionTypes.EDIT_COMPONENT:
       return {
        ...state,
-       components: state.components.map((component, index) =>  component.id === action.payload.ind ?
+       components: state.components.map(component =>  component.id === action.payload.ind ?
        {...component, co: action.payload.componentToReducer} : component
      )
     };
@@ -34,6 +34,20 @@ function manageComponents(state = iniState, action) {
         components: state.components.map(comp=> comp.id === action.payload.idInReducer ?
           {...comp, toRecipe: !comp.toRecipe} : comp
 
+        )
+      }
+    case actionTypes.EDIT_BOOLEAN:
+      return {
+        ...state,
+        components: state.components.map(comp=> comp.id === action.payload.idInReducer && comp.toRecipe !== action.payload.toRecipeInReducer ?
+          {...comp, toRecipe: !comp.toRecipeInReducer} : comp
+        )
+      }
+    case actionTypes.EDIT_RECIPE:
+      return {
+        ...state,
+        components: state.components.map(comp=> comp.id === action.payload.idInReducer ?
+          {...comp, toRecipe: action.payload.toRecipeInReducer} : comp
         )
       }
 }

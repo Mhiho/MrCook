@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import * as actionTypes from '../../store/actions';
 import NewRecipe from './newRecipe';
 import RecipeList from './RecipeList';
+import EditRecipe from './EditRecipe';
 
 class ComponentCombine extends Component {
 
@@ -25,7 +26,7 @@ class ComponentCombine extends Component {
           clickson={this.props.addRecipe} />
         <p>Here are your recipes</p>
           <RecipeList />
-
+          <EditRecipe />
       </div>
     )
   }
