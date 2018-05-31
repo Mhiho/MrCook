@@ -14,12 +14,6 @@ class RecipeList extends Component {
       )
     )
 
-    const recipes = this.props.recipes.map(recipe =>(
-      <div>
-        <h1>{recipe.re}</h1>
-      </div>
-    ))
-
     return (
       <div>
         {compons}
@@ -31,7 +25,7 @@ class RecipeList extends Component {
 
 function mapStateToProps(state){
   return{
-    recipes: state.createRecipe.recipes
+    recipes: state.manageComponents.recipes
   }
 }
 

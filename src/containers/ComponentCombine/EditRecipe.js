@@ -3,18 +3,25 @@ import {connect} from 'react-redux';
 import * as actionTypes from '../../store/actions';
 
 class EditRecipe extends Component{
+
+
+
   render(){
-    const compons =
-    this.props.components.filter(c=> c.toRecipe === true);
+    const object = {
+      id: 2222,
+      co: 'coś tam',
+      toRecipe: true
+    }
     return(
       <div>
         <form>
         { this.props.components.map(comp=>(
           <div>
         <input
-          onChange={()=>this.props.editToRecipe(comp.toRecipe, comp.id)}
+          onChange={(e)=>this.props.editToRecipe(comp.toRecipe == e.target.value, comp.id)}
           type="checkbox"
           key={comp.id}
+          checked={comp.toRecipe}
         />
         <label key={comp.id}>{comp.co}</label>
 
@@ -22,7 +29,7 @@ class EditRecipe extends Component{
       ))
       }
         </form>
-        <button onClick={()=>this.props.changeRecipe(compons,this.props.components.map(c=>c.id))}>
+        <button onClick={()=>this.props.changeRecipe(object)}>
           Edit Your Recipe
         </button>
       </div>
@@ -32,15 +39,16 @@ class EditRecipe extends Component{
 
 function mapStateToProps(state) {
   return{
-    components: state.manageComponents.components
+    components: state.manageComponents.components,
+    recipes: state.manageComponents.recipes
   }
 }
 
 function mapDispatchToProps(dispatch){
   return{
     editToRecipe: (toRecipe, id) => dispatch({type: actionTypes.EDIT_BOOLEAN, payload: {toRecipeInReducer: toRecipe, idInReducer: id}}),
-    changeRecipe: (toRecipe, id) => dispatch({type: actionTypes.EDIT_RECIPE, payload:{toRecipeInReducer: toRecipe, idInReducer: id}})
+    changeRecipe: (object) => dispatch({type: actionTypes.EDIT_RECIPE, payload:{objectToAdd: object }})
   }
 }
 
-export default connect(mapStateToProps)(EditRecipe);
+export default connect(mapStateToProps,mapDispatchToProps)(EditRecipe);

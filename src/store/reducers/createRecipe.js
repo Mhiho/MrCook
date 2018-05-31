@@ -17,6 +17,13 @@ function createRecipe(state = iniState, action) {
         ...state,
         recipes: state.recipes.concat(newRecipe)
       }
+    case actionTypes.EDIT_RECIPE:
+      return {
+        ...state,
+        components: state.recipes.map(recipe=> recipe.comps.map(comp=> comp.id === action.payload.idInReducer && comp.toRecipe === true ?
+          {...comp, toRecipe: action.payload.toRecipeInReducer} : comp
+        ))
+      }
   }
   return state;
 }
