@@ -34,8 +34,7 @@ class ComponentCombine extends Component {
 
 function mapStateToProps(state) {
   return{
-    components: state.manageComponents.components,
-    recipes: state.createRecipe.recipes
+    components: state.manageComponents.components
   }
 }
 

@@ -18,7 +18,7 @@ class NewRecipe extends Component {
 
   render(){
     const compons =
-    this.props.components.filter(c=> c.toRecipe === true ? c : null );
+    this.props.components.filter(c=> c.toRecipe === true);
     return (
       <div>
       <input
@@ -36,8 +36,7 @@ class NewRecipe extends Component {
 }
 function mapStateToProps(state){
   return{
-    components: state.manageComponents.components,
-    recipes: state.createRecipe.recipes
+    components: state.manageComponents.components
   }
 }
 
