@@ -7,16 +7,15 @@ class EditRecipe extends Component{
 
 
   render(){
-    const obj = this.props.components.map(comp=>{
-      comp
-    })
+    const base = this.props.recipes.map(recipe=>recipe.comps.filter(comp=> function(x){return x==comp.id}.length > 1));
+    console.log(base);
     return(
       <div>
         <form>
-        { this.props.components.map(comp=>(
+         { base.map(comp=>(
           <div>
         <input
-          onChange={(e)=>this.props.editToRecipe(comp.toRecipe == e.target.value, comp.id)}
+          onChange={()=>this.props.editRecipes(comp.id)}
           type="checkbox"
           key={comp.id}
           checked={comp.toRecipe}
@@ -24,12 +23,9 @@ class EditRecipe extends Component{
         <label key={comp.id}>{comp.co}</label>
 
         </div>
-      ))
-      }
+      ))  }
         </form>
-        <button onClick={()=>this.props.changeRecipe(obj)}>
-          Edit Your Recipe
-        </button>
+
       </div>
     )
   }
@@ -44,8 +40,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch){
   return{
-    editToRecipe: (toRecipe, id) => dispatch({type: actionTypes.EDIT_BOOLEAN, payload: {toRecipeInReducer: toRecipe, idInReducer: id}}),
-    changeRecipe: (object) => dispatch({type: actionTypes.EDIT_RECIPE, payload:{objectToAdd: object }})
+    addComToRecipe: (toRecipe, id) => dispatch({type: actionTypes.ADD_COM_TO_RECIPE, payload: {toRecipeInReducer: toRecipe, idInReducer: id}}),
+      editRecipes: (id) => dispatch({type: actionTypes.EDIT_BOOLEAN, payload: {idInReducer: id}})
   }
 }
 

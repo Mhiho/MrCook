@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-
+import EditRecipe from './EditRecipe';
 
 
 class RecipeList extends Component {
@@ -10,11 +10,12 @@ class RecipeList extends Component {
             <div key={recipe.id}>
             <h2>{recipe.re}</h2>
               <ul key={recipe.id}>
-              {this.props.components.map(comp=> comp.toRecipe === true ?
+              {recipe.comps.map(comp=> comp.toRecipe === true ?
                 <li key={comp.id}>{comp.co}</li>
                 : null
               )}
               </ul>
+              <EditRecipe />
             </div>
       )
     )
@@ -22,6 +23,7 @@ class RecipeList extends Component {
     return (
       <div>
         {compons}
+
       </div>
     )
   }

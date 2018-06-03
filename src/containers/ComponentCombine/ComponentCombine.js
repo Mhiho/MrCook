@@ -26,7 +26,6 @@ class ComponentCombine extends Component {
           clickson={this.props.addRecipe} />
         <p>Here are your recipes</p>
           <RecipeList />
-          <EditRecipe />
       </div>
     )
   }
