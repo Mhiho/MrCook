@@ -16,8 +16,6 @@ class ComponentsList extends Component {
     }
 
   render(){
-    console.log(this.props.components);
-
     return (
       <div>
          {this.props.components.map((component,index)=>(

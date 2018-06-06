@@ -2,8 +2,9 @@ import * as actionTypes from '../actions';
 import _ from 'lodash';
 
 const iniState = {
-  components: [],
-  recipes: []
+  recipes: [],
+  components: []
+
 };
 function manageComponents(state = iniState, action) {
   switch (action.type) {
@@ -37,32 +38,7 @@ function manageComponents(state = iniState, action) {
 
         )
       }
-    case actionTypes.EDIT_BOOLEAN:
-      return {
-        ...state,
-        recipes: state.recipes.map(recipe=>recipe.comps.map(comp=>comp.id === action.payload.idInReducer ?
-        {...comp, toRecipe: !comp.toRecipe} : comp))
-      }
-
-///skopiowane ponizej z createRecipe
-
-        case actionTypes.ADD_RECIPE:
-          const newRecipe = {
-            id: Math.floor(Math.random()*10000),
-            re: action.payload.recipeInReducer,
-            comps: action.payload.compsInReducer
-          }
-          return {
-            ...state,
-            recipes: state.recipes.concat(newRecipe)
-          }
-        case actionTypes.EDIT_RECIPE:
-          return {
-            ...state,
-            recipes: state.recipes
-    }
 }
   return state;
 }
-
 export default manageComponents;

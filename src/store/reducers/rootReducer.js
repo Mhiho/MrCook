@@ -3,7 +3,8 @@ import ManageComponents from './manageComponents';
 import CreateRecipe from './createRecipe';
 
 const rootReducer = combineReducers({
-  manageComponents: ManageComponents
+  manageComponents: ManageComponents,
+  createRecipe: CreateRecipe
 })
 
 export default rootReducer;

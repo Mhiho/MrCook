@@ -18,7 +18,7 @@ class NewRecipe extends Component {
 
   render(){
     const compons = this.props.components ?
-    this.props.components.map(comp=> comp)
+    this.props.components
     : null;
     return (
       <div>

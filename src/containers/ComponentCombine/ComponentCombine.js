@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import * as actionTypes from '../../store/actions';
 import NewRecipe from './newRecipe';
 import RecipeList from './RecipeList';
-import EditRecipe from './EditRecipe';
 
 class ComponentCombine extends Component {
 
@@ -34,7 +33,8 @@ class ComponentCombine extends Component {
 
 function mapStateToProps(state) {
   return{
-    components: state.manageComponents.components
+    components: state.manageComponents.components,
+    recipes: state.createRecipe.recipes
   }
 }
 

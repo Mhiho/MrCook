@@ -1,4 +1,7 @@
 import * as actionTypes from '../actions';
+import {schema, normalize} from 'normalizr';
+import _ from 'lodash';
+
 
 
 const iniState = {
@@ -8,24 +11,37 @@ const iniState = {
 function createRecipe(state = iniState, action) {
   switch (action.type) {
     case actionTypes.ADD_RECIPE:
-      const newRecipe = {
+      let newRecipe = {
         id: Math.floor(Math.random()*10000),
         re: action.payload.recipeInReducer,
-        comps: action.payload.compsInReducer
+        c: action.payload.compsInReducer
       }
       return {
         ...state,
-        recipes: state.recipes.concat(newRecipe)
+        recipes: state.recipes.concat([newRecipe])
       }
-    case actionTypes.EDIT_RECIPE:
+      case actionTypes.EDIT_BOOLEAN:
+
       return {
         ...state,
-        components: state.recipes.map(recipe=> recipe.comps.map(comp=> comp.id === action.payload.idInReducer && comp.toRecipe === true ?
-          {...comp, toRecipe: action.payload.toRecipeInReducer} : comp
-        ))
+         recipes: state.recipes.map(rec=>rec.c.map(com=>com.id ===action.payload.idFromComp ?
+           {...rec,
+        c:
+        {...com,
+            toRecipe: !com.toRecipe}}
+         : rec ))
+
       }
-  }
+   }
   return state;
 }
-
 export default createRecipe;
+// return {
+//   ...state,
+//    recipes: state.recipes.map(rec=>rec.c.map(com=>com.id ===action.payload.idFromComp && rec.id === action.payload.idFromRecipe ?
+//   {...rec,
+//       c: {...com,
+//       toRecipe: !com.toRecipe}
+//   } : rec ))
+//
+// }
