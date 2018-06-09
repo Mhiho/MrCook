@@ -20,15 +20,15 @@ function createRecipe(state = iniState, action) {
         recipes: state.recipes.concat(newRecipe)
       }
       case actionTypes.EDIT_BOOLEAN:
-      return Object.assign({}, ...state,{
-        recipes: {..._.map(state.recipes, recipe=>{
-          if(recipe.id== action.payload.idFromRecipe){
+      return {...state,
+        recipes: [..._.map(state.recipes, recipe=>{
+          if(recipe.id === action.payload.idFromRecipe){
             return Object.assign({}, recipe, {
               c: {..._.map(recipe.c, comp=>{
-                if(comp.id ==action.payload.idFromComp){
+                if(comp.id === action.payload.idFromComp){
                   return {...comp,
                   toRecipe: !comp.toRecipe};
-                }
+                }else{return comp}
               })
             }
             })
@@ -36,21 +36,11 @@ function createRecipe(state = iniState, action) {
             return Object.assign({}, recipe, {
               c: {..._.map(recipe.c, comp=>comp)}})
           }
-
         })
-      }
-      })
-
+      ]
+}
 
  }
   return state;
 }
 export default createRecipe;
-// ...state,
-//  recipes: state.recipes.map(rec=>rec.c.map(com=>com.id ===action.payload.idFromComp && rec.id === action.payload.idFromRecipe ?
-// {...rec,
-//     c: {...com,
-//     toRecipe: !com.toRecipe}
-// } : rec ))
-
-//

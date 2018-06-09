@@ -27,7 +27,7 @@ class NewRecipe extends Component {
         value={this.state.recipe}
         type="text"
       />
-      <button onClick={() => {this.props.clickson(this.state.recipe, compons);
+      <button onClick={() => {this.props.clickson(this.state.recipe, compons),
                               this.resetInputHandler()}}>
         Add recipe with chosen components
         </button>

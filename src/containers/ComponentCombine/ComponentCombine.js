@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import * as actionTypes from '../../store/actions';
 import NewRecipe from './newRecipe';
 import RecipeList from './RecipeList';
+import _ from 'lodash';
 
 class ComponentCombine extends Component {
 
@@ -10,7 +11,7 @@ class ComponentCombine extends Component {
     return (
       <div>
         <form>
-        { this.props.components.map((component,index)=>(
+        { _.map(this.props.components, (component,index)=>(
           <div key={component.id}>
           <input
             onChange={()=>this.props.addComToRecipe(component.toRecipe, component.id)}
