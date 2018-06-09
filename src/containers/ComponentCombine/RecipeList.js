@@ -17,12 +17,12 @@ class RecipeList extends Component {
                     : null
                   )}
                   </ul>
-                  { _.map(recipe.c, comp=>
+                  { _.map(recipe.c, (comp,i)=>
                   <div key={index}>
                   <input
                     onChange={()=>this.props.editRecipes(comp.id,recipe.id)}
                     type="checkbox"
-                    key={comp.id}
+                    key={i}
                     checked={comp.toRecipe}
                   />
                   <label key={comp.id}>{comp.co}</label>
