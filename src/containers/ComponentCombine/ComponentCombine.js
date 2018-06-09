@@ -4,6 +4,7 @@ import * as actionTypes from '../../store/actions';
 import NewRecipe from './newRecipe';
 import RecipeList from './RecipeList';
 import _ from 'lodash';
+import {Link} from 'react-router-dom';
 
 class ComponentCombine extends Component {
 
@@ -26,6 +27,9 @@ class ComponentCombine extends Component {
           clickson={this.props.addRecipe} />
         <p>Here are your recipes</p>
           <RecipeList />
+        <div>
+          <Link to= {'/SearchBar/'}>If You want serch between created recipes.</Link>
+        </div>
       </div>
     )
   }

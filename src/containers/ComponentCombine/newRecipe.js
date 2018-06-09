@@ -9,7 +9,7 @@ class NewRecipe extends Component {
   }
 
   onChangeHandler = (recipe) =>{
-    this.setState({recipe: recipe})
+    this.setState({recipe})
   }
 
   resetInputHandler = () =>{
