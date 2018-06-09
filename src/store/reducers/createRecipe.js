@@ -1,7 +1,6 @@
 import * as actionTypes from '../actions';
-import {schema, normalize} from 'normalizr';
+import {schema, normalize, arrayOf} from 'normalizr';
 import _ from 'lodash';
-
 
 
 const iniState = {
@@ -18,30 +17,40 @@ function createRecipe(state = iniState, action) {
       }
       return {
         ...state,
-        recipes: state.recipes.concat([newRecipe])
+        recipes: state.recipes.concat(newRecipe)
       }
       case actionTypes.EDIT_BOOLEAN:
+      return Object.assign({}, ...state,{
+        recipes: {..._.map(state.recipes, recipe=>{
+          if(recipe.id== action.payload.idFromRecipe){
+            return Object.assign({}, recipe, {
+              c: {..._.map(recipe.c, comp=>{
+                if(comp.id ==action.payload.idFromComp){
+                  return {...comp,
+                  toRecipe: !comp.toRecipe};
+                }
+              })
+            }
+            })
+          } else{
+            return Object.assign({}, recipe, {
+              c: {..._.map(recipe.c, comp=>comp)}})
+          }
 
-      return {
-        ...state,
-         recipes: state.recipes.map(rec=>rec.c.map(com=>com.id ===action.payload.idFromComp ?
-           {...rec,
-        c:
-        {...com,
-            toRecipe: !com.toRecipe}}
-         : rec ))
-
+        })
       }
-   }
+      })
+
+
+ }
   return state;
 }
 export default createRecipe;
-// return {
-//   ...state,
-//    recipes: state.recipes.map(rec=>rec.c.map(com=>com.id ===action.payload.idFromComp && rec.id === action.payload.idFromRecipe ?
-//   {...rec,
-//       c: {...com,
-//       toRecipe: !com.toRecipe}
-//   } : rec ))
+// ...state,
+//  recipes: state.recipes.map(rec=>rec.c.map(com=>com.id ===action.payload.idFromComp && rec.id === action.payload.idFromRecipe ?
+// {...rec,
+//     c: {...com,
+//     toRecipe: !com.toRecipe}
+// } : rec ))
+
 //
-// }
