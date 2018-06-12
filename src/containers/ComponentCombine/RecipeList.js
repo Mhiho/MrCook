@@ -11,6 +11,9 @@ class RecipeList extends Component {
         let compons = _.map(this.props.recipes, (recipe,index)=>(
                 <div key={index}>
                 <h2>{recipe.re}</h2>
+                  <button
+                    onClick={()=>this.props.deleteRecipe(recipe.id)}>
+                    Erase Recipe</button>
                   <ul key={index}>
                   {_.map(recipe.c, comp=> comp.toRecipe === true ?
                     <li key={comp.id}>{comp.co}</li>
@@ -48,7 +51,8 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
   return{
-    editRecipes: (id,ind) => dispatch({type: actionTypes.EDIT_BOOLEAN, payload: {idFromComp: id, idFromRecipe: ind}})
+    editRecipes: (id,ind) => dispatch({type: actionTypes.EDIT_BOOLEAN, payload: {idFromComp: id, idFromRecipe: ind}}),
+    deleteRecipe: (id) => dispatch({type: actionTypes.DELETE_RECIPE, index: id})
   }
 }
 

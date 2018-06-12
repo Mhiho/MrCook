@@ -1,7 +1,8 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment, Children } from 'react';
 import {connect} from 'react-redux';
 import * as actionTypes from '../../store/actions';
-
+import { normalize, schema, arrayOf } from 'normalizr';
+import _ from 'lodash';
 
 class SearchBar extends Component {
 
@@ -19,9 +20,7 @@ onChangeHandler= (term)=>{
        <p key={index}>{term}</p>
      )
    )
-   const arrays = this.props.recipes.map(recipe=>recipe.c.map(comp=>comp.co));
-   const filtered = arrays.map(array=>array.filter(el => this.props.terms.includes(el)))
-   console.log(filtered);
+
         return (
          <div>
             <input type="text"
@@ -39,11 +38,11 @@ onChangeHandler= (term)=>{
           </div>
             <div>
             What you can cook from ingredients above:
-              {filtered.map(one=> one ?
+              {this.props.terms.map(one=> one ?
 
               <div>
-                {this.props.recipes.map(recipe=>recipe.c.map((comp,index)=>comp.co == one ?
-                  <div>
+                {this.props.recipes.map(recipe=>recipe.c.map(el=>el.co == one ?
+                  <div key={recipe.id}>
                     {recipe.re}
                   </div>
                   : null
@@ -56,9 +55,9 @@ onChangeHandler= (term)=>{
 
             </div>
         </div>
-      )
-    }
-  }
+)
+}
+}
 
 
 function mapStateToProps(state){

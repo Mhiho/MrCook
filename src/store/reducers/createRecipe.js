@@ -1,5 +1,4 @@
 import * as actionTypes from '../actions';
-import {schema, normalize, arrayOf} from 'normalizr';
 import _ from 'lodash';
 
 
@@ -39,7 +38,11 @@ function createRecipe(state = iniState, action) {
         })
       ]
 }
-
+  case actionTypes.DELETE_RECIPE:
+    return {
+      ...state,
+    recipes: state.recipes.filter(recipe=> recipe.id !== action.index)
+  };
  }
   return state;
 }
