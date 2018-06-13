@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 import rootReducer from './store/reducers/rootReducer';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import SearchBar from './containers/SearchBar/SearchBar';
-
+import 'bootstrap/dist/css/bootstrap.css';
 
 const store = createStore(rootReducer)
 

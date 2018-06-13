@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import {Button, Input} from 'reactstrap';
 
 class AddComponent extends Component {
 
@@ -19,15 +19,16 @@ class AddComponent extends Component {
 
     return (
       <div>
-      <input
+      <Input
+        className="form-control"
         onChange={e=>{this.onChangeHandler(e.target.value)}}
         value={this.state.component}
         type="text"
       />
-      <button onClick={() => {this.props.click(this.state.component);
+      <Button className="btn-success" onClick={() => {this.props.click(this.state.component);
                               this.addComponentHandler()}}>
         Add
-        </button>
+        </Button>
       </div>
     )
   }

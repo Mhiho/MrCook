@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import * as actionTypes from '../../store/actions';
 import _ from 'lodash';
+import classes from './RecipeList.scss';
+import {Button} from 'reactstrap';
 
 class RecipeList extends Component {
 
@@ -9,26 +11,27 @@ class RecipeList extends Component {
 
     console.log(this.props.recipes);
         let compons = _.map(this.props.recipes, (recipe,index)=>(
-                <div key={index}>
+                <div key={recipe.id}>
                 <h2>{recipe.re}</h2>
-                  <button
+                  <Button
+                    color='danger'
                     onClick={()=>this.props.deleteRecipe(recipe.id)}>
-                    Erase Recipe</button>
-                  <ul key={index}>
+                    Erase Recipe</Button>
+                  <ul>
                   {_.map(recipe.c, comp=> comp.toRecipe === true ?
                     <li key={comp.id}>{comp.co}</li>
                     : null
                   )}
                   </ul>
                   { _.map(recipe.c, (comp,i)=>
-                  <div key={index}>
+                  <div key={i}>
                   <input
                     onChange={()=>this.props.editRecipes(comp.id,recipe.id)}
                     type="checkbox"
                     key={i}
                     checked={comp.toRecipe}
                   />
-                  <label key={comp.id}>{comp.co}</label>
+                  <label key={i+10000}>{comp.co}</label>
                   </div>
                 )}
                   </div>

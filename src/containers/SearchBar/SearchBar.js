@@ -1,32 +1,34 @@
 import React, { Component, Fragment, Children } from 'react';
 import {connect} from 'react-redux';
 import * as actionTypes from '../../store/actions';
-import { normalize, schema, arrayOf } from 'normalizr';
 import _ from 'lodash';
+import classes from './SearchBar.scss';
 
 class SearchBar extends Component {
 
-state = {
-  term: ''
-}
+  state = {
+    term: ''
+  }
 
-onChangeHandler= (term)=>{
-    this.setState({term})
-}
+  onChangeHandler= (term)=>{
+      this.setState({term})
+  }
 
   render(){
     const list =
      this.props.terms.map((term,index)=>(
        <p key={index}>{term}</p>
      )
-   )
+    )
 
         return (
          <div>
             <input type="text"
+              className= "form-control-sm"
               onChange={(event)=>this.onChangeHandler(event.target.value)}
             />
             <button
+              className="btn-success"
               onClick={()=>this.props.addTermToCompare(this.state.term)}>
               Search ingredients
             </button>
@@ -38,26 +40,23 @@ onChangeHandler= (term)=>{
           </div>
             <div>
             What you can cook from ingredients above:
-              {this.props.terms.map(one=> one ?
+              {this.props.terms.map((one,i)=> one ?
 
-              <div>
+              <div key={i}>
                 {this.props.recipes.map(recipe=>recipe.c.map(el=>el.co == one ?
-                  <div key={recipe.id}>
+                  <h2 key={recipe.id}>
                     {recipe.re}
-                  </div>
+                  </h2>
                   : null
                 ))}
               </div>
                : null )
-
-
               }
-
             </div>
         </div>
-)
-}
-}
+      )
+    }
+  }
 
 
 function mapStateToProps(state){
